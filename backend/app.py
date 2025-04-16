@@ -6,7 +6,12 @@ import json
 import re
 from dotenv import load_dotenv
 import uuid
+import pandas as pd
 
+df = pd.read_csv("E:/RGI-Hackathon/backend/jobs_new.csv")
+df = df[['city', 'category', 'job_title', 'job_description', 'company_name']].dropna()
+df['city'] = df['city'].str.lower().str.strip()
+df['category'] = df['category'].str.lower().str.strip()
 
 load_dotenv()
 
@@ -480,6 +485,40 @@ def chat():
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
 
+
+@app.route('/predict_job', methods=['POST'])
+def get_jobs_route():
+    data = request.get_json()
+
+    city = data.get('city', '').lower().strip()
+    category1 = data.get('category1', '').lower().strip()
+    category2 = data.get('category2', '').lower().strip()
+
+    # Filter based on input
+    filtered_df = df[((df['city'].str.contains(city, case=False, na=False)) &
+                      ((df['category'].str.contains(category1, case=False, na=False)) |
+                       (df['category'].str.contains(category2, case=False, na=False))))]
+
+    job_count = len(filtered_df)
+    job_titles = filtered_df['job_title'].unique().tolist()[:10]
+    job_descriptions = filtered_df['job_description'].unique().tolist()[:5]
+    company_names = filtered_df['company_name'].unique().tolist()[:5]
+
+    if job_count == 0:
+        return jsonify({
+            "status": "no_match",
+            "message": "No exact matches found.",
+            "available_cities": df['city'].unique().tolist()[:10],
+            "available_categories": df['category'].unique().tolist()[:10]
+        })
+
+    return jsonify({
+        "status": "success",
+        "total_jobs": job_count,
+        "job_titles": job_titles,
+        "job_descriptions": job_descriptions,
+        "company_names": company_names
+    })
 
 
 if __name__ == "__main__":

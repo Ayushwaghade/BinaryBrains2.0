@@ -67,9 +67,65 @@ const Home = () => {
 
       {/* Tab Content */}
       {activeTab === "dashboard" && (
-        <div>
-          <h2 className="h4">Dashboard Overview</h2>
-          <p>Welcome back! Track your progress and skills here.</p>
+        <div className="container mx-auto p-4">
+          <h2 className="text-3xl font-semibold mb-4">Dashboard Overview</h2>
+          <p className="text-gray-600 mb-6">
+            Welcome back! Track your progress and skills here.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Skill Progress */}
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <h3 className="font-medium text-xl mb-2">Your Skills Progress</h3>
+              <ul>
+                <li className="flex justify-between mb-2">
+                  <span className="text-gray-700">Web Development</span>
+                  <span>70%</span>
+                </li>
+                <li className="flex justify-between mb-2">
+                  <span className="text-gray-700">Machine Learning</span>
+                  <span>85%</span>
+                </li>
+                <li className="flex justify-between mb-2">
+                  <span className="text-gray-700">Java Development</span>
+                  <span>60%</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Recent Activities */}
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <h3 className="font-medium text-xl mb-2">Recent Activities</h3>
+              <ul>
+                <li className="text-gray-700 mb-2">
+                  • Completed React Project: Job Prediction System
+                </li>
+                <li className="text-gray-700 mb-2">
+                  • Started Spring Boot Backend for Hostel Signature
+                  Verification System
+                </li>
+                <li className="text-gray-700 mb-2">
+                  • Worked on Rice Quality Analysis Deep Learning Model
+                </li>
+              </ul>
+            </div>
+
+            {/* Recommendations */}
+            <div className="bg-white p-4 rounded-lg shadow-md">
+              <h3 className="font-medium text-xl mb-2">Recommendations</h3>
+              <ul>
+                <li className="text-gray-700 mb-2">
+                  • Learn Spring Boot for backend development
+                </li>
+                <li className="text-gray-700 mb-2">
+                  • Practice more ML algorithms for better predictions
+                </li>
+                <li className="text-gray-700 mb-2">
+                  • Explore Flutter for cross-platform mobile development
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       )}
 

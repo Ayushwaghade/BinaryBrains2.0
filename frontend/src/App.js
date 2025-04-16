@@ -8,6 +8,8 @@ import QuizComponent from "./components/QuizComponent";
 import MockInterviewComponent from "./components/MockInterviewComponent";
 import { MessageCircle } from "lucide-react";
 import Chatbot from "./components/Chatbot";
+import JobFinder from "./components/JobFinder";
+import DropdownMenu from "./components/DropdownMenu";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,6 +33,7 @@ function App() {
           {/* Right Items */}
           <div className="d-flex align-items-center ms-auto">
             {/* Modal Trigger Button */}
+            <DropdownMenu />
             <button
               className="btn btn-outline-primary me-3"
               onClick={openModal}
@@ -48,6 +51,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/quiz" element={<QuizComponent />} />
           <Route path="/mock-interview" element={<MockInterviewComponent />} />
+          <Route path="/getjobs" element={<JobFinder />} />
           <Route path="/learningpath" element={<LearningPathGenerator />} />
         </Routes>
       </Router>
