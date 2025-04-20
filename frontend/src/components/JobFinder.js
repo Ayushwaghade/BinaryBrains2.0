@@ -478,22 +478,53 @@ const JobFinder = () => {
 
   const handlePredict = async () => {
     try {
-      // Constructing the payload to send to the backend
       const payload = {
-        city: city,
-        branch: branch,
-        preferredCategory: preferredCategory,
-        jobType: jobType,
+        city,
+        branch,
+        preferredCategory,
+        jobType,
       };
 
-      // Sending POST request to Flask backend for prediction
       const response = await axios.post(
         "http://localhost:5000/predict_job",
         payload
       );
 
-      // Assuming the backend responds with the prediction result
-      setPrediction(`Predicted Job: ${response.data.predictedJob}`);
+      const {
+        status,
+        message,
+        total_jobs,
+        job_titles,
+        job_descriptions,
+        company_names,
+        result,
+      } = response.data;
+
+      if (status === "no_match") {
+        setPrediction(
+          `No matching jobs found. Here are some available options:\n`
+        );
+        setPrediction(
+          (prev) => prev + `Cities: ${message.available_cities.join(", ")}\n`
+        );
+        setPrediction(
+          (prev) =>
+            prev + `Categories: ${message.available_categories.join(", ")}\n`
+        );
+      } else if (status === "success" && total_jobs > 0) {
+        const jobList = result
+          .map(
+            (job, index) =>
+              `${index + 1}. ${job.job_title || "Unknown Job"} at ${
+                job.company_name || "Unknown Company"
+              }`
+          )
+          .join("\n");
+
+        setPrediction(`Predicted Jobs:\n${jobList}`);
+      } else {
+        setPrediction("No jobs found.");
+      }
     } catch (error) {
       console.error("Error while making prediction request:", error);
       setPrediction("Error in predicting the job. Please try again.");
@@ -502,7 +533,7 @@ const JobFinder = () => {
 
   return (
     <div style={styles.container}>
-      <h2 style={styles.header}>Job Prediction</h2>
+      <h2 style={styles.header}>JobFinder</h2>
 
       <label style={styles.label}>City:</label>
       <input

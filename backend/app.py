@@ -512,13 +512,17 @@ def get_jobs_route():
             "available_categories": df['category'].unique().tolist()[:10]
         })
 
+    # Combine results into a success response
+    result = filtered_df.to_dict(orient='records')
     return jsonify({
         "status": "success",
         "total_jobs": job_count,
         "job_titles": job_titles,
         "job_descriptions": job_descriptions,
-        "company_names": company_names
+        "company_names": company_names,
+        "result": result  # Add the filtered job details here
     })
+
 
 
 if __name__ == "__main__":

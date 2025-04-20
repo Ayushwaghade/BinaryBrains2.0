@@ -67,63 +67,93 @@ const Home = () => {
 
       {/* Tab Content */}
       {activeTab === "dashboard" && (
-        <div className="container mx-auto p-4">
-          <h2 className="text-3xl font-semibold mb-4">Dashboard Overview</h2>
-          <p className="text-gray-600 mb-6">
+        <div className="container py-4">
+          <h2 className="h3 mb-3">
+            <i className="bi bi-speedometer2 me-2"></i>
+            Dashboard Overview
+          </h2>
+          <p className="text-muted mb-4">
             Welcome back! Track your progress and skills here.
           </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="row g-4">
             {/* Skill Progress */}
-            <div className="bg-white p-4 rounded-lg shadow-md">
-              <h3 className="font-medium text-xl mb-2">Your Skills Progress</h3>
-              <ul>
-                <li className="flex justify-between mb-2">
-                  <span className="text-gray-700">Web Development</span>
-                  <span>70%</span>
-                </li>
-                <li className="flex justify-between mb-2">
-                  <span className="text-gray-700">Machine Learning</span>
-                  <span>85%</span>
-                </li>
-                <li className="flex justify-between mb-2">
-                  <span className="text-gray-700">Java Development</span>
-                  <span>60%</span>
-                </li>
-              </ul>
+            <div className="col-md-6 col-lg-4">
+              <div className="card shadow-sm">
+                <div className="card-body">
+                  <h5 className="card-title">
+                    <i className="bi bi-bar-chart-line-fill me-2 text-primary"></i>
+                    Your Skills Progress
+                  </h5>
+                  <ul className="list-group list-group-flush mt-3">
+                    <li className="list-group-item d-flex justify-content-between">
+                      <span>Web Development</span>
+                      <span>70%</span>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between">
+                      <span>Machine Learning</span>
+                      <span>85%</span>
+                    </li>
+                    <li className="list-group-item d-flex justify-content-between">
+                      <span>Java Development</span>
+                      <span>60%</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             {/* Recent Activities */}
-            <div className="bg-white p-4 rounded-lg shadow-md">
-              <h3 className="font-medium text-xl mb-2">Recent Activities</h3>
-              <ul>
-                <li className="text-gray-700 mb-2">
-                  • Completed React Project: Job Prediction System
-                </li>
-                <li className="text-gray-700 mb-2">
-                  • Started Spring Boot Backend for Hostel Signature
-                  Verification System
-                </li>
-                <li className="text-gray-700 mb-2">
-                  • Worked on Rice Quality Analysis Deep Learning Model
-                </li>
-              </ul>
+            <div className="col-md-6 col-lg-4">
+              <div className="card shadow-sm">
+                <div className="card-body">
+                  <h5 className="card-title">
+                    <i className="bi bi-clock-history me-2 text-warning"></i>
+                    Recent Activities
+                  </h5>
+                  <ul className="list-unstyled mt-3">
+                    <li className="mb-2">
+                      <i className="bi bi-check-circle-fill text-success me-2"></i>
+                      Completed React Project: Job Prediction System
+                    </li>
+                    <li className="mb-2">
+                      <i className="bi bi-play-circle-fill text-info me-2"></i>
+                      Started Spring Boot Backend for Hostel Signature
+                      Verification System
+                    </li>
+                    <li className="mb-2">
+                      <i className="bi bi-cpu-fill text-secondary me-2"></i>
+                      Worked on Rice Quality Analysis Deep Learning Model
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             {/* Recommendations */}
-            <div className="bg-white p-4 rounded-lg shadow-md">
-              <h3 className="font-medium text-xl mb-2">Recommendations</h3>
-              <ul>
-                <li className="text-gray-700 mb-2">
-                  • Learn Spring Boot for backend development
-                </li>
-                <li className="text-gray-700 mb-2">
-                  • Practice more ML algorithms for better predictions
-                </li>
-                <li className="text-gray-700 mb-2">
-                  • Explore Flutter for cross-platform mobile development
-                </li>
-              </ul>
+            <div className="col-md-6 col-lg-4">
+              <div className="card shadow-sm">
+                <div className="card-body">
+                  <h5 className="card-title">
+                    <i className="bi bi-lightbulb-fill me-2 text-warning"></i>
+                    Recommendations
+                  </h5>
+                  <ul className="list-unstyled mt-3">
+                    <li className="mb-2">
+                      <i className="bi bi-arrow-right-circle-fill me-2 text-primary"></i>
+                      Learn Spring Boot for backend development
+                    </li>
+                    <li className="mb-2">
+                      <i className="bi bi-arrow-right-circle-fill me-2 text-primary"></i>
+                      Practice more ML algorithms for better predictions
+                    </li>
+                    <li className="mb-2">
+                      <i className="bi bi-arrow-right-circle-fill me-2 text-primary"></i>
+                      Explore Flutter for cross-platform mobile development
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>

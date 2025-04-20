@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Brain, UserCircle } from "lucide-react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import LearningPathGenerator from "./components/LearningPathGenerator";
 import WorkforceForm from "./components/WorkforceForm";
@@ -9,7 +9,6 @@ import MockInterviewComponent from "./components/MockInterviewComponent";
 import { MessageCircle } from "lucide-react";
 import Chatbot from "./components/Chatbot";
 import JobFinder from "./components/JobFinder";
-import DropdownMenu from "./components/DropdownMenu";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,7 +32,18 @@ function App() {
           {/* Right Items */}
           <div className="d-flex align-items-center ms-auto">
             {/* Modal Trigger Button */}
-            <DropdownMenu />
+            <Link to="/quiz">
+              <button className="btn btn-primary me-3">UpSkill</button>
+            </Link>
+            <Link to="/mock-interview">
+              <button className="btn btn-primary me-3">EasyPrep</button>
+            </Link>
+            <Link to="/getjobs">
+              <button className="btn btn-primary me-3">JobFinder</button>
+            </Link>
+            <Link to="/learningpath">
+              <button className="btn btn-primary me-3">SkillRoute </button>
+            </Link>
             <button
               className="btn btn-outline-primary me-3"
               onClick={openModal}
@@ -46,15 +56,13 @@ function App() {
           </div>
         </div>
       </nav>
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/quiz" element={<QuizComponent />} />
-          <Route path="/mock-interview" element={<MockInterviewComponent />} />
-          <Route path="/getjobs" element={<JobFinder />} />
-          <Route path="/learningpath" element={<LearningPathGenerator />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/quiz" element={<QuizComponent />} />
+        <Route path="/mock-interview" element={<MockInterviewComponent />} />
+        <Route path="/getjobs" element={<JobFinder />} />
+        <Route path="/learningpath" element={<LearningPathGenerator />} />
+      </Routes>
 
       {/* Modal for WorkforceForm */}
       {isModalOpen && (
